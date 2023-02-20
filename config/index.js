@@ -12,8 +12,7 @@ module.exports = (app) => {
   app.set("trust proxy", 1);
   app.use(
     cors({
-      credentials: true,
-      origin: [FRONTEND_URL]
+      origin: ["http://localhost:3000", process.env.ORIGIN],
     })
   );
 
