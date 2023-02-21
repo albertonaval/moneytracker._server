@@ -1,4 +1,5 @@
 
+
 const mongoose = require("mongoose")
 
 const transactionSchema = new mongoose.Schema(
@@ -7,16 +8,16 @@ const transactionSchema = new mongoose.Schema(
             {
                 operation: {
                     type: String,
-                    required: false
+                    required: true
                 },
                 price: {
                     type: Number,
-                    default: 0,
-                    required: true
+                    required: true,
+                    default: 0
                 },
                 description: {
                     type: String,
-                    required: false
+                    required: false,
                 },
             }
         ],
