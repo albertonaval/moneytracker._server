@@ -8,16 +8,16 @@ const transactionSchema = new mongoose.Schema(
             {
                 operation: {
                     type: String,
-
+                    required: false
                 },
                 price: {
                     type: Number,
-                    required: true,
-                    default: 0
+                    default: 0,
+                    required: true
                 },
                 description: {
                     type: String,
-
+                    required: false
                 },
             }
         ],
@@ -30,5 +30,14 @@ const transactionSchema = new mongoose.Schema(
         timestamps: true
     }
 )
+
+transactionSchema.pre("save", function (next) {
+    if (!this.transaction || this.transaction.length === 0) {
+        this.transaction.push({
+            price: "0"
+        })
+    }
+    next()
+})
 
 module.exports = mongoose.model("Transaction", transactionSchema)
