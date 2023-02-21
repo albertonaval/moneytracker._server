@@ -12,19 +12,10 @@ module.exports = (app) => {
   app.set("trust proxy", 1);
   app.use(
     cors({
-      origin: ["http://localhost:8080", process.env.ORIGIN],
+      origin: ["http://localhost:3000", process.env.ORIGIN],
       credentials: true
     })
   );
-
-  app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-  });
 
   app.use(logger("dev"));
   app.use(express.json());
