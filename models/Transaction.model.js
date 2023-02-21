@@ -1,5 +1,4 @@
 
-
 const mongoose = require("mongoose")
 
 const transactionSchema = new mongoose.Schema(
@@ -34,7 +33,9 @@ const transactionSchema = new mongoose.Schema(
 transactionSchema.pre("save", function (next) {
     if (!this.transaction || this.transaction.length === 0) {
         this.transaction.push({
-            price: "0"
+            operation: "first operation",
+            price: "0",
+            description: "description"
         })
     }
     next()
