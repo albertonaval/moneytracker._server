@@ -8,12 +8,11 @@ const transactionSchema = new mongoose.Schema(
             {
                 operation: {
                     type: String,
-                    required: true
+                    required: false
                 },
                 price: {
                     type: Number,
-                    required: true,
-                    default: 0
+                    required: false,
                 },
                 description: {
                     type: String,
@@ -34,9 +33,9 @@ const transactionSchema = new mongoose.Schema(
 transactionSchema.pre("save", function (next) {
     if (!this.transaction || this.transaction.length === 0) {
         this.transaction.push({
-            operation: "first operation",
+            operation: "This is an example",
             price: "0",
-            description: "description"
+            description: "Congratulations, your first transaction"
         })
     }
     next()
